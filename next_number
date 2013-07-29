@@ -1,0 +1,15 @@
+#!/bin/bash
+
+FOLDER='execution'
+if [[ "$#" > "0" ]]; then
+  FOLDER=$1
+fi
+
+for f in $FOLDER/*; do
+  OFFSET=`expr length $FOLDER`
+  fname=${f:$OFFSET+1}
+  LENGTH=`expr match "$fname" '^[0-9]*_'`
+  NEXT=${fname:0:$LENGTH-1}
+done
+
+printf %03d $((NEXT+1))

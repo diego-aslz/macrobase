@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DELAY=80
+if [[ "$#" > "1" ]]; then
+  DELAY=$2
+fi
+
+FOLDER='execution'
+if [[ "$#" > "2" ]]; then
+  FOLDER=$3
+fi
+
+cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0

@@ -17,9 +17,9 @@ if [[ $SLEEP > 0 ]]; then
   SLEEP=${f:$SLEEP:$END - 2 - $SLEEP}
   sleep $SLEEP
 elif [[ -f "$1" ]]; then
-  cat $1 | xmacroplay -d $DELAY :0
+  cat $1 | xmacroplay -d $DELAY :0 > /dev/null
 elif [[ -f "./$FOLDER/$1" ]]; then
-  cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0
+  cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0 > /dev/null
 else
-  cat ./$FOLDER/$1.mac | xmacroplay -d $DELAY :0
+  cat ./$FOLDER/$1.mac | xmacroplay -d $DELAY :0 > /dev/null
 fi

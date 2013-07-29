@@ -10,4 +10,14 @@ if [[ "$#" > "2" ]]; then
   FOLDER=$3
 fi
 
-cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0
+SLEEP=`expr match "$1" '[0-9]*_delay_'`
+if [[ $SLEEP > 0 ]]; then
+  f=$1
+  END=`expr index "$f" m`
+  SLEEP=${f:$SLEEP:$END - 2 - $SLEEP}
+  sleep $SLEEP
+elif [[ -f "./$FOLDER/$1" ]]; then
+  cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0
+else
+  cat ./$FOLDER/$1.mac | xmacroplay -d $DELAY :0
+fi

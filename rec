@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FOLDER='execution'
+if [[ "$#" > "1" ]]; then
+  FOLDER=$2
+fi
+
+xmacrorec2 > ./$FOLDER/$1

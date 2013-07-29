@@ -10,7 +10,7 @@ if [[ "$#" > "2" ]]; then
   DELAY=$3
 fi
 
-SLEEP=`expr match "$1" '[0-9]*_delay_'`
+SLEEP=`expr match "$1" '.*[0-9]*_delay_'`
 if [[ $SLEEP > 0 ]]; then
   f=$1
   END=`expr index "$f" m`

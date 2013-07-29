@@ -1,13 +1,13 @@
 #!/bin/bash
 
-DELAY=80
+FOLDER='execution'
 if [[ "$#" > "1" ]]; then
-  DELAY=$2
+  FOLDER=$2
 fi
 
-FOLDER='execution'
+DELAY=80
 if [[ "$#" > "2" ]]; then
-  FOLDER=$3
+  DELAY=$3
 fi
 
 SLEEP=`expr match "$1" '[0-9]*_delay_'`
@@ -16,6 +16,8 @@ if [[ $SLEEP > 0 ]]; then
   END=`expr index "$f" m`
   SLEEP=${f:$SLEEP:$END - 2 - $SLEEP}
   sleep $SLEEP
+elif [[ -f "$1" ]]; then
+  cat $1 | xmacroplay -d $DELAY :0
 elif [[ -f "./$FOLDER/$1" ]]; then
   cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0
 else

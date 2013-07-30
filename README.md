@@ -60,7 +60,7 @@ that, it will run what's in the `execution` folder as many times as you asked
 for. You can specify how many times you want it to run with a parameter, as you
 can see below. And at last, it will run what's in the `after` directory.
 
-    ./run 5 # Runs what's in the 'execution' folder five times.
+    ./run -r 5 # Runs what's in the 'execution' folder five times.
 
 By default, every time you record a macro using the `rec` script or register
 a delay using the `delay` script, the result will be tossed in the `execution`
@@ -84,6 +84,14 @@ This is done this way because the order the files are listed (alphabetical) is
 the order that they will get run. So, it's recommended that you record the
 macros and the delays in the order you need them to run, the scripts will take
 care of the ordering for you.
+
+## Debugging
+
+If some of your macros is messing up with something, you can debug it by passing
+the `-d` argument. This will make the script tell you what file it's going to
+run before doing it so you can easily find where is the problem.
+
+    ./run -d
 
 ## The delay problem
 

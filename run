@@ -1,28 +1,40 @@
 #!/bin/bash
 
-TIMES=1
-if [[ "$#" > "0" ]]; then
-  TIMES=$1
-fi
-
-for f in before/*.mac; do
-  if [[ $f != 'before/*.mac' ]]; then
-    ./play $f
-  fi;
-done
-
-COUNT=0
-while [[ "$COUNT" < "$TIMES" ]]; do
-  for f in execution/*.mac; do
-    if [[ $f != 'execution/*.mac' ]]; then
+call_play() {
+  dir=$1
+  for f in "$dir"; do
+    if [[ `expr index $f '*'` == 0 ]]; then
+      if [[ $DEBUG == TRUE ]]; then
+        echo -n "Next to run: "
+        echo -n $f
+        echo -n " (press Enter to continue)"
+        read
+      fi
       ./play $f
     fi;
   done
+}
+
+PROG_NAME=$(basename $0)
+DEBUG=false
+TIMES=1
+
+while getopts r:d OPTION
+do
+  case ${OPTION} in
+      d) DEBUG=TRUE;;
+      r) TIMES=${OPTARG};;
+    \?) echo "Usage: ${PROG_NAME} [-r TIMES_TO_REPEAT] [-d]"
+         exit 2;;
+  esac
+done
+
+call_play before/*.mac
+
+COUNT=0
+while [[ "$COUNT" < "$TIMES" ]]; do
+  call_play 'execution/*.mac'
   (( COUNT++ ))
 done
 
-for f in after/*.mac; do
-  if [[ $f != 'after/*.mac' ]]; then
-    ./play $f
-  fi;
-done
+call_play after/*.mac

@@ -1,15 +1,7 @@
 #!/bin/bash
 
 FOLDER='execution'
-# if [[ "$#" > "1" ]]; then
-#   FOLDER=$2
-# fi
-
 DELAY=100
-# if [[ "$#" > "2" ]]; then
-#   DELAY=$3
-# fi
-
 PROG_NAME=$(basename $0)
 
 while getopts d:f: o

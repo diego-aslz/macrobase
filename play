@@ -13,7 +13,7 @@ do  case "$o" in
   esac
 done
 
-f=$@
+f="${@: -1}"
 
 SLEEP=`expr match "$f" '.*[0-9]*_delay_'`
 if [[ $SLEEP > 0 ]]; then

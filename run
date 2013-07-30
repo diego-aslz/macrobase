@@ -10,7 +10,7 @@ call_play() {
         echo -n " (press Enter to continue)"
         read
       fi
-      ./play $f
+      ./play -d $DELAY $f
     fi;
   done
 }
@@ -18,13 +18,15 @@ call_play() {
 PROG_NAME=$(basename $0)
 DEBUG=false
 TIMES=1
+DELAY=100
 
-while getopts r:d OPTION
+while getopts r:d:g OPTION
 do
   case ${OPTION} in
-      d) DEBUG=TRUE;;
+      d) DELAY=${OPTARG};;
+      g) DEBUG=TRUE;;
       r) TIMES=${OPTARG};;
-    \?) echo "Usage: ${PROG_NAME} [-r TIMES_TO_REPEAT] [-d]"
+    \?) echo "Usage: ${PROG_NAME} [-r TIMES_TO_REPEAT] [-d XMACRO_DELAY] [-g]"
          exit 2;;
   esac
 done

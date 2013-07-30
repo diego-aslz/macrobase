@@ -91,7 +91,7 @@ If some of your macros is messing up with something, you can debug it by passing
 the `-d` argument. This will make the script tell you what file it's going to
 run before doing it so you can easily find where is the problem.
 
-    ./run -d
+    ./run -g
 
 ## The delay problem
 

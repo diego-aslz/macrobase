@@ -1,25 +1,37 @@
 #!/bin/bash
 
 FOLDER='execution'
-if [[ "$#" > "1" ]]; then
-  FOLDER=$2
-fi
+# if [[ "$#" > "1" ]]; then
+#   FOLDER=$2
+# fi
 
-DELAY=150
-if [[ "$#" > "2" ]]; then
-  DELAY=$3
-fi
+DELAY=100
+# if [[ "$#" > "2" ]]; then
+#   DELAY=$3
+# fi
 
-SLEEP=`expr match "$1" '.*[0-9]*_delay_'`
+PROG_NAME=$(basename $0)
+
+while getopts d:f: o
+do  case "$o" in
+  d) DELAY="$OPTARG";;
+  f) FOLDER="$OPTARG";;
+  [?]) echo "Usage: $PROG_NAME [-d DELAY] [-f FOLDER] macroname"
+    exit 2;;
+  esac
+done
+
+f=$@
+
+SLEEP=`expr match "$f" '.*[0-9]*_delay_'`
 if [[ $SLEEP > 0 ]]; then
-  f=$1
   END=`expr index "$f" m`
   SLEEP=${f:$SLEEP:$END - 2 - $SLEEP}
   sleep $SLEEP
-elif [[ -f "$1" ]]; then
-  cat $1 | xmacroplay -d $DELAY :0 > /dev/null
-elif [[ -f "./$FOLDER/$1" ]]; then
-  cat ./$FOLDER/$1 | xmacroplay -d $DELAY :0 > /dev/null
+elif [[ -f "$f" ]]; then
+  cat $f | xmacroplay -d $DELAY :0 > /dev/null
+elif [[ -f "./$FOLDER/$f" ]]; then
+  cat ./$FOLDER/$f | xmacroplay -d $DELAY :0 > /dev/null
 else
-  cat ./$FOLDER/$1.mac | xmacroplay -d $DELAY :0 > /dev/null
+  cat ./$FOLDER/$f.mac | xmacroplay -d $DELAY :0 > /dev/null
 fi

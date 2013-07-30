@@ -2,7 +2,7 @@
 
 call_play() {
   dir=$1
-  for f in "$dir"; do
+  for f in $dir; do
     if [[ `expr index $f '*'` == 0 ]]; then
       if [[ $DEBUG == TRUE ]]; then
         echo -n "Next to run: "

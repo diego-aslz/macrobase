@@ -5,18 +5,18 @@ if [[ "$#" > "0" ]]; then
   TIMES=$1
 fi
 
-for f in before/*; do
+for f in before/*.mac; do
   ./play $f
 done
 
 COUNT=0
 while [[ "$COUNT" < "$TIMES" ]]; do
-  for f in execution/*; do
+  for f in execution/*.mac; do
     ./play $f
   done
   (( COUNT++ ))
 done
 
-for f in after/*; do
+for f in after/*.mac; do
   ./play $f
 done

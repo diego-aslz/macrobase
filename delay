@@ -5,4 +5,4 @@ if [[ "$#" > "1" ]]; then
   FOLDER=$2
 fi
 
-touch "./$FOLDER/`./next_number $FOLDER`_delay_$1.mac"
+touch "./$FOLDER/`util/next_number $FOLDER`_delay_$1.mac"

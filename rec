@@ -5,4 +5,4 @@ if [[ "$#" > "1" ]]; then
   FOLDER=$2
 fi
 
-xmacrorec2 > "./$FOLDER/`./next_number $FOLDER`_$1.mac"
+xmacrorec2 > "./$FOLDER/`util/next_number $FOLDER`_$1.mac"

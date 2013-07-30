@@ -6,17 +6,23 @@ if [[ "$#" > "0" ]]; then
 fi
 
 for f in before/*.mac; do
-  ./play $f
+  if [[ $f != 'before/*.mac' ]]; then
+    ./play $f
+  fi;
 done
 
 COUNT=0
 while [[ "$COUNT" < "$TIMES" ]]; do
   for f in execution/*.mac; do
-    ./play $f
+    if [[ $f != 'execution/*.mac' ]]; then
+      ./play $f
+    fi;
   done
   (( COUNT++ ))
 done
 
 for f in after/*.mac; do
-  ./play $f
+  if [[ $f != 'after/*.mac' ]]; then
+    ./play $f
+  fi;
 done

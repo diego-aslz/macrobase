@@ -5,7 +5,7 @@ if [[ "$#" > "1" ]]; then
   FOLDER=$2
 fi
 
-DELAY=80
+DELAY=150
 if [[ "$#" > "2" ]]; then
   DELAY=$3
 fi

@@ -51,7 +51,15 @@ __Run all of it at once__
 ## How it works
 
 It has three main folders: `before`, `execution` and `after`. Each of them can
-contain as many macros and delay flags as needed. Once you are ready, you call:
+contain as many macros and delay flags as needed. You just need to create your
+macros and delays using the `./rec` and the `./delay` commands, for example:
+
+    ./rec open_my_website # And then you record this macro
+    ./delay 3 # Wait 3 seconds so the website can be loaded
+    ./rec fill_form # And now you record the form filling
+    ./rec save_form # And record a click in the "Save" button
+
+All of the steps will be registered so, when you are ready, you can call:
 
     ./run
 

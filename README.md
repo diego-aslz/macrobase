@@ -87,8 +87,8 @@ care of the ordering for you.
 
 ## Debugging
 
-If some of your macros is messing up with something, you can debug it by passing
-the `-d` argument. This will make the script tell you what file it's going to
+If some macro yolu recorded is messing up with something, you can debug it by passing
+the `-g` argument. This will make the script tell you what file it's going to
 run before doing it so you can easily find where is the problem.
 
     ./run -g

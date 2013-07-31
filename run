@@ -34,7 +34,7 @@ done
 call_play before/*.mac
 
 COUNT=0
-while [[ "$COUNT" < "$TIMES" ]]; do
+while [[ $(($COUNT < $TIMES)) == 1 ]]; do
   call_play 'execution/*.mac'
   (( COUNT++ ))
 done
